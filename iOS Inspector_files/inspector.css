@@ -1,0 +1,93 @@
+#header {
+    position: fixed;
+    background: #EEEEEE;
+    top: 0;
+    left: 0;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+
+#header div {
+    margin-right: 2em;
+    padding-right: 2em;
+    display: inline;
+    color: #333333;
+}
+
+#logo{
+	padding-top:10px;
+	padding-left:10px;
+}
+
+a, a:visited, a:link {
+    color: #0088CC;
+    text-decoration: none;
+}
+
+#content {
+    position: fixed;
+    top: 30px;
+    left: 0px;
+    height: 100%;
+    overflow: auto;
+    width: 100%
+}
+
+.mainH {
+    height: 400px;
+}
+
+#device {
+    width: 500px;
+    float: left;
+}
+
+.full-size {
+    height: 100%;
+    width: 100%;
+}
+
+.ui-resizable-handle {
+    background-color: red;
+}
+
+#internals {
+    margin-left: 500px;
+    height: 400px;
+}
+
+.clear {
+    clear: both;
+}
+
+#footer {
+    position: fixed;
+    background: #EEEEEE;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.ui-tabs-panel {
+
+}
+
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    height: 25px;
+    font-size: 0.8em;
+}
+
+.ui-layout-south .ui-tabs-nav {
+    /* don't need border or rounded corners - tabs 'fill' the pane */
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-bottom: 0 !important;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+}
