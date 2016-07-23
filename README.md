@@ -1,6 +1,8 @@
 Appium iOS Inspector
 ====================
 
+[![Inspector Screenshot](https://raw.githubusercontent.com/mykola-mokhnach/Appium-iOS-Inspector/master/screenshot.png)](#Inspector Screenshot)
+
 The tool for iOS elements location. It is based on the original source of [Selendroid Inspector](https://github.com/selendroid/selendroid)
 
 [Here](http://appium.io) you can find more information about Appium automation tool.
