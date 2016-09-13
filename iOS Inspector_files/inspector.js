@@ -425,6 +425,10 @@ Inspector.prototype.calculateAbsoluteNodePath = function(ref) {
     }
 }
 
+Inspector.prototype.copyTextToClipboard = function(event, text) {
+    window.prompt("Copy to clipboard: Ctrl/Cmd+C, Enter", text);
+}
+
 /**
  * show the info about a node in the right details section.
  *
@@ -448,7 +452,15 @@ Inspector.prototype.showDetails = function (type, ref, na, isVisible, value, lab
             + "<p><b>Label</b>: " + label + "</p>"
             + "<p><b>Is Visible</b>: " + isVisible + "</p>"
             + "<p><b>Rect</b>: x=" + rect.x + ", y=" + rect.y + ", h=" + rect.h + ", w=" + rect.w + "</p>"
-            + "<p><b>Absolute XPath</b>: " + me.calculateAbsoluteNodePath(ref) + "</p>");
+            + "<p><b>Absolute XPath</b>:"
+            + "<br><input id='absoluteXPath' style='width: 95%;' onclick='this.focus();this.select()' readonly='readonly'></input></p>"
+            + "<p><button id='copyXml' type='button'>Copy XML To The Clipboard</button></p>");
+
+    $('#absoluteXPath').val(me.calculateAbsoluteNodePath(ref));
+
+    $("#copyXml").click(function (event) {
+        me.copyTextToClipboard(event, me.autXml);
+    });
 
     var content = $('#htmlSource').html() + "\n" + html;
 
