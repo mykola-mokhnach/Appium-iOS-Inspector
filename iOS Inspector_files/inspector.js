@@ -11,7 +11,8 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  *
- * Copyright 2016 Nick at Wire Swiss Inc. Made the Inspector compatible with Appium iOS driver.
+ * Copyright 2016-present Mykola Mokhnach at Wire Swiss GmbH
+ * Made the Inspector compatible with Appium iOS driver.
  *
  */
 
