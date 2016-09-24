@@ -20,7 +20,8 @@
 Inspector.logLevel = 4; // 0=none, 1=error, 2=error +warning, 3=
 // error,warning,info 4 = all
 const APPIUM_ROOT = "http://localhost:4723/wd/hub";
-const SCALE_FACTOR = 2;
+const DEFAULT_SCALE_FACTOR = 2;
+const MAX_SCALE_FACTOR = 5;
 
 
 function Inspector(selector) {
@@ -73,6 +74,7 @@ Inspector.prototype.initScreenshot = function () {
                   $("#loading").hide();
                   $("#screenshot").show();
                   $("#screenshot").attr("src", "data:image/png;base64," + data.value);
+                  me.initScaleFactorSelector();
                   me.log.info("Screenshot received. Scheduling structure update...");
                   window.setTimeout(function(){
                       resize();
@@ -81,6 +83,8 @@ Inspector.prototype.initScreenshot = function () {
         .fail(function () {
                   me.log.info("error");
                   $("#loading").hide();
+                  $("#scaleFactor").hide();
+                  $("#scaleFactorLabel").hide();
                   $("#screenshot").show();
                   $("#screenshot").attr("src", "about:blank");
                   window.setTimeout(function(){
@@ -103,7 +107,7 @@ Inspector.prototype.transformAutXmlToAjax = function (xmlDoc) {
         var generatedRef = uuid();
         var toCoordinate = function(strPresentation) {
             if (strPresentation && !!parseFloat(strPresentation)) {
-                return Math.round(parseFloat(strPresentation) * SCALE_FACTOR);
+                return Math.round(parseFloat(strPresentation));
             } else {
                 return 0;
             }
@@ -215,6 +219,35 @@ Inspector.prototype.reloadData = function () {
     });
 
 }
+
+Inspector.prototype.initScaleFactorSelector = function () {
+    var me = this;
+    var innerComboHtml = "";
+    for (var i = 1; i <= MAX_SCALE_FACTOR; i++) {
+        innerComboHtml += "<option value=\"" + i + "\">" + i + "x</option>\n";
+    }
+    $("#scaleFactor").html(innerComboHtml);
+    var scaleFactor = DEFAULT_SCALE_FACTOR;
+    try {
+        var s = window.localStorage.getItem("scaleFactor");
+        if (s != null) {
+            scaleFactor = s;
+        }
+    } catch(e) {
+        me.log.error(e);
+    }
+    $("#scaleFactor").val(scaleFactor);
+    $("#scaleFactor").on('change', function() {
+        try {
+            window.localStorage.setItem("scaleFactor", this.value);
+        } catch(e) {
+            me.log.error(e);
+        }
+    });
+    $("#scaleFactor").show();
+    $("#scaleFactorLabel").show();
+}
+
 /**
  *
  * @param selector
@@ -499,11 +532,13 @@ Inspector.prototype.highlight = function (x, y, h, w, translationFound, ref) {
         });
         d.appendTo("#rotationCenter");
 
+        var retinaScale = $("#scaleFactor").val();
+
         d.css('border', "1px solid red");
-        d.css('left', x * scale_highlight + realOffsetX + 'px');
-        d.css('top', y * scale_highlight + realOffsetY + 'px');
-        d.css('height', h * scale_highlight + 'px');
-        d.css('width', w * scale_highlight + 'px');
+        d.css('left', x * scale_highlight * retinaScale + realOffsetX + 'px');
+        d.css('top', y * scale_highlight * retinaScale + realOffsetY + 'px');
+        d.css('height', h * scale_highlight * retinaScale + 'px');
+        d.css('width', w * scale_highlight * retinaScale + 'px');
         // d.css('left', x + realOffsetX + 'px');
         // d.css('top', y + realOffsetY + 'px');
         // d.css('height', h + 'px');
@@ -617,11 +652,13 @@ Inspector.prototype.findElementsByXpath2 = function (xpath) {
 Inspector.prototype.onMouseMove = function (event) {
 
     if (!this.lock) {
+        var retinaScale = $("#scaleFactor").val();
+
         var parentOffset = $("#mouseOver").offset();
         var x = event.pageX - parentOffset.left;
         var y = event.pageY - parentOffset.top;
-        x = x / scale_highlight;
-        y = y / scale_highlight;
+        x = x / scale_highlight / retinaScale;
+        y = y / scale_highlight / retinaScale;
         console.log(x + "," + y);
         var finder = new NodeFinder(this.root);
         var node = finder.getNodeByPosition(x, y);
