@@ -23,10 +23,11 @@ Inspector.logLevel = 4; // 0=none, 1=error, 2=error +warning, 3=
 const APPIUM_ROOT = "http://localhost:4723/wd/hub";
 const DEFAULT_SCALE_FACTOR = 2;
 const MAX_SCALE_FACTOR = 5;
+const SCREENSHOT_GET_TIMEOUT_MS = 20000;
+const SRC_XML_GET_TIMEOUT_MS = 60000;
 
 
 function Inspector(selector) {
-
     this.busy = false;
 
     this.lock = false;
@@ -43,6 +44,16 @@ function Inspector(selector) {
         return;
     }
     this.initAutXml();
+    var me = this;
+    if (this.autXml === undefined) {
+        // Cannot load session info
+        $("#logo").html(
+            "<a style=\"color: red;\" href=\"javascript:location.reload()\">"
+            + "Appium source at <em>" + APPIUM_ROOT + "/" + me.sessionId + "/source</em> is cannot be received "
+            + "after " + SRC_XML_GET_TIMEOUT_MS / 1000 + " seconds timeout. Click this message to retry."
+            + "</a>");
+        return;
+    }
     this.initScreenshot();
     var jsTreeData = this.transformAutXmlToAjax(this.parseXml(this.autXml));
     this.jsTreeConfig = {
@@ -69,7 +80,7 @@ Inspector.prototype.initScreenshot = function () {
     $.ajax({
                url: APPIUM_ROOT + "/session/" + me.sessionId + "/screenshot",
                type: "GET",
-               timeout: 20000
+               timeout: SCREENSHOT_GET_TIMEOUT_MS,
            })
         .done(function (data) {
                   $("#loading").hide();
@@ -198,6 +209,7 @@ Inspector.prototype.initAutXml = function () {
                url: APPIUM_ROOT + "/session/" + me.sessionId + "/source",
                async: false,
                type: "GET",
+               timeout: SRC_XML_GET_TIMEOUT_MS,
            })
         .done(function (data) {
                   me.log.info("success");
