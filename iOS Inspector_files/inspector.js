@@ -49,7 +49,7 @@ function Inspector(selector) {
         // Cannot load session info
         $("#logo").html(
             "<a style=\"color: red;\" href=\"javascript:location.reload()\">"
-            + "Appium source at <em>" + APPIUM_ROOT + "/" + me.sessionId + "/source</em> is cannot be received "
+            + "Appium source at <em>" + APPIUM_ROOT + "/" + me.sessionId + "/source</em> cannot be received "
             + "after " + SRC_XML_GET_TIMEOUT_MS / 1000 + " seconds timeout. Click this message to retry."
             + "</a>");
         return;
