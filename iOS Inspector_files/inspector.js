@@ -168,7 +168,7 @@ Inspector.prototype.transformAutXmlToAjax = function (xmlDoc) {
     var traverseDocument = function traverser(root) {
         var res = transformNode(root);
         if (root.hasChildNodes()) {
-            for (var i=0; i < root.childNodes.length - 1; i++) {
+            for (var i=0; i < root.childNodes.length; i++) {
                 // Only nodes of type Element are counted
                 if (root.childNodes[i].nodeType == 1) {
                     res.children.push(traverser(root.childNodes[i]));
