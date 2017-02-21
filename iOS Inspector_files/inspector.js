@@ -51,7 +51,7 @@ function Inspector(selector) {
         $("#logo").html(
             "<a style=\"color: red;\" href=\"javascript:location.reload()\">"
             + "Appium source at "
-            + "<em>" + APPIUM_ROOT + "/" + me.sessionId + "/source</em>"
+            + "<em>" + APPIUM_ROOT + "/session/" + me.sessionId + "/source</em>"
             + " cannot be received after "
             + parseInt((performance.now() - msStarted) / 1000, 10)
             + " seconds timeout. Click this message to retry."
