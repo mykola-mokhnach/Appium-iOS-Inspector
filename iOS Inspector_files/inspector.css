@@ -91,3 +91,7 @@ a, a:visited, a:link {
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
 }
+
+#xpathInput {
+    width: 100%;
+}

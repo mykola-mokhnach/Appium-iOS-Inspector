@@ -788,6 +788,7 @@ Inspector.prototype.toggleXPath = function (force) {
 
         $("#xpathHelper").dialog({
             resizable: false,
+            minWidth: 600,
             dialogClass: "no-close"
         });
         $("#xpathHelper").show();
