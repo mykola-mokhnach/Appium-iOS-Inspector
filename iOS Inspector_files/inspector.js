@@ -150,7 +150,7 @@ Inspector.prototype.transformAutXmlToAjax = function (xmlDoc) {
                 "l10n": {
                     "matches": 0
                 },
-                "shown": node.getAttribute("visible"),
+                "shown": node.getAttribute("visible") || node.getAttribute("shown"),
                 "source": "",
                 "error": "",
                 "rect": {
