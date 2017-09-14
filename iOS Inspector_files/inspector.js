@@ -34,7 +34,7 @@ function Inspector(selector) {
     this.log = new Logger(this);
     this.selector = selector;
     this.initSessionId();
-    if (this.sessionId === undefined) {
+    if (!this.sessionId) {
         // Cannot load session info
         $("#logo").html(
             "<a style=\"color: red;\" href=\"javascript:location.reload()\">"
@@ -43,51 +43,20 @@ function Inspector(selector) {
             + "</a>");
         return;
     }
-    var msStarted = performance.now();
     this.initAutXml();
-    var me = this;
-    if (this.autXml === undefined) {
-        // Cannot load session info
-        $("#logo").html(
-            "<a style=\"color: red;\" href=\"javascript:location.reload()\">"
-            + "Appium source at "
-            + "<em>" + APPIUM_ROOT + "/session/" + me.sessionId + "/source</em>"
-            + " cannot be received after "
-            + parseInt((performance.now() - msStarted) / 1000, 10)
-            + " seconds timeout. Click this message to retry."
-            + "</a>");
-        return;
-    }
-    this.initScreenshot();
-    var jsTreeData = this.transformAutXmlToAjax(this.parseXml(this.autXml));
-    this.jsTreeConfig = {
-        "core": {
-            "animation": 0,
-            "load_open": true
-        },
-        "json_data": {
-            "data": jsTreeData
-        },
-        "themes": {
-            "theme": "apple"
-        },
-        "plugins": [ "themes", "json_data", "ui" ]
-    };
-
-    this.init();
 }
 
 Inspector.prototype.initScreenshot = function () {
     var me = this;
     this.log.info("initScreenshot...");
-    $("#loading").show();
+    $("#loadingScreenshot").show();
     $.ajax({
                url: APPIUM_ROOT + "/session/" + me.sessionId + "/screenshot",
                type: "GET",
                timeout: SCREENSHOT_GET_TIMEOUT_MS,
            })
         .done(function (data) {
-                  $("#loading").hide();
+                  $("#loadingScreenshot").hide();
                   $("#screenshot").show();
                   $("#screenshot").attr("src", "data:image/png;base64," + data.value);
                   me.initScaleFactorSelector();
@@ -98,7 +67,7 @@ Inspector.prototype.initScreenshot = function () {
               })
         .fail(function () {
                   me.log.info("error");
-                  $("#loading").hide();
+                  $("#loadingScreenshot").hide();
                   $("#scaleFactor").hide();
                   $("#scaleFactorLabel").hide();
                   $("#screenshot").show();
@@ -208,20 +177,55 @@ Inspector.prototype.initSessionId = function () {
 
 Inspector.prototype.initAutXml = function () {
     var me = this;
+    var msStarted = performance.now();
     this.log.info("initAutXml...");
+    $("#screenshot").hide();
+    $("#loadingScreenshot").show();
+    $("#tree").hide();
+    $("#loadingTree").show();
     $.ajax({
-               url: APPIUM_ROOT + "/session/" + me.sessionId + "/source",
-               async: false,
-               type: "GET",
-               timeout: SRC_XML_GET_TIMEOUT_MS,
+                url: APPIUM_ROOT + "/session/" + me.sessionId + "/source",
+                type: "GET",
+                timeout: SRC_XML_GET_TIMEOUT_MS,
            })
         .done(function (data) {
-                  me.log.info("success");
-                  me.log.info(data);
-                  me.autXml = data.value;
+                me.log.info("Successfully loaded the source tree in "
+                            + parseInt(performance.now() - msStarted, 10)
+                            + " ms");
+                me.log.info(data);
+
+                me.initScreenshot();
+
+                $("#loadingTree").hide();
+                $("#tree").show();
+                var jsTreeData = me.transformAutXmlToAjax(me.parseXml(data.value));
+                me.jsTreeConfig = {
+                    "core": {
+                        "animation": 0,
+                        "load_open": true
+                    },
+                    "json_data": {
+                        "data": jsTreeData
+                    },
+                    "themes": {
+                        "theme": "apple"
+                    },
+                    "plugins": [ "themes", "json_data", "ui" ]
+                };
+
+                me.init();
               })
         .fail(function () {
-                  me.log.info("error");
+                $("#loadingTree").hide();
+                $("#loadingScreenshot").hide();
+                $("#logo").html(
+                    "<a style=\"color: red;\" href=\"javascript:location.reload()\">"
+                    + "Appium source at "
+                    + "<em>" + APPIUM_ROOT + "/session/" + me.sessionId + "/source</em>"
+                    + " cannot be received after "
+                    + parseInt((performance.now() - msStarted) / 1000, 10)
+                    + " seconds timeout. Click this message to retry."
+                    + "</a>");
               });
 }
 

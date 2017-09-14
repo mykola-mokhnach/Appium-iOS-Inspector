@@ -1,85 +1,89 @@
 <!DOCTYPE html>
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<title>iOS Appium Inspector</title>
-<link rel="stylesheet" href="iOS%20Inspector_files/inspector.css" type="text/css">
-<link rel="stylesheet" href="iOS%20Inspector_files/style.css" type="text/css">
-<link rel="stylesheet" href="iOS%20Inspector_files/ide.css" type="text/css">
-<link rel="stylesheet" href="iOS%20Inspector_files/jquery.css" type="text/css">
-<link rel="stylesheet" href="iOS%20Inspector_files/jquery-ui.css" type="text/css">
-<link rel="stylesheet" href="iOS%20Inspector_files/prettify.css" type="text/css">
-<script type="text/javascript" src="iOS%20Inspector_files/jquery-1.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/jquery-ui-1.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/inspector1.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/jquery_002.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/jquery_003.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/prettify.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/Logger.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/inspector.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/ide.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/uiactions.js"></script>
-<script type="text/javascript" src="iOS%20Inspector_files/jquery.js"></script>
-<script>
-jQuery(window).load(function () {
-  console.log('before calling resize()');
-  resize();
-});
-</script>
-<style id="vakata-stylesheet" type="text/css">#vakata-dragged { display:block; margin:0 0 0 0; padding:4px 4px 4px 24px; position:absolute; top:-2000px; line-height:16px; z-index:10000; } #vakata-contextmenu { display:block; visibility:hidden; left:0; top:-200px; position:absolute; margin:0; padding:0; min-width:180px; background:#ebebeb; border:1px solid silver; z-index:10000; *width:180px; } #vakata-contextmenu ul { min-width:180px; *width:180px; } #vakata-contextmenu ul, #vakata-contextmenu li { margin:0; padding:0; list-style-type:none; display:block; } #vakata-contextmenu li { line-height:20px; min-height:20px; position:relative; padding:0px; } #vakata-contextmenu li a { padding:1px 6px; line-height:17px; display:block; text-decoration:none; margin:1px 1px 0 1px; } #vakata-contextmenu li ins { float:left; width:16px; height:16px; text-decoration:none; margin-right:2px; } #vakata-contextmenu li a:hover, #vakata-contextmenu li.vakata-hover > a { background:gray; color:white; } #vakata-contextmenu li ul { display:none; position:absolute; top:-2px; left:100%; background:#ebebeb; border:1px solid gray; } #vakata-contextmenu .right { right:100%; left:auto; } #vakata-contextmenu .bottom { bottom:-1px; top:auto; } #vakata-contextmenu li.vakata-separator { min-height:0; height:1px; line-height:1px; font-size:1px; overflow:hidden; margin:0 2px; background:silver; /* border-top:1px solid #fefefe; */ padding:0; } </style><style id="jstree-stylesheet" type="text/css">.jstree ul, .jstree li { display:block; margin:0 0 0 0; padding:0 0 0 0; list-style-type:none; } .jstree li { display:block; min-height:18px; line-height:18px; white-space:nowrap; margin-left:18px; min-width:18px; } .jstree-rtl li { margin-left:0; margin-right:18px; } .jstree > ul > li { margin-left:0px; } .jstree-rtl > ul > li { margin-right:0px; } .jstree ins { display:inline-block; text-decoration:none; width:18px; height:18px; margin:0 0 0 0; padding:0; } .jstree a { display:inline-block; line-height:16px; height:16px; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } .jstree a:focus { outline: none; } .jstree a > ins { height:16px; width:16px; } .jstree a > .jstree-icon { margin-right:3px; } .jstree-rtl a > .jstree-icon { margin-left:3px; margin-right:0; } li.jstree-open > ul { display:block; } li.jstree-closed > ul { display:none; } #vakata-dragged ins { display:block; text-decoration:none; width:16px; height:16px; margin:0 0 0 0; padding:0; position:absolute; top:4px; left:4px;  -moz-border-radius:4px; border-radius:4px; -webkit-border-radius:4px; } #vakata-dragged .jstree-ok { background:green; } #vakata-dragged .jstree-invalid { background:red; } #jstree-marker { padding:0; margin:0; font-size:12px; overflow:hidden; height:12px; width:8px; position:absolute; top:-30px; z-index:10001; background-repeat:no-repeat; display:none; background-color:transparent; text-shadow:1px 1px 1px white; color:black; line-height:10px; } #jstree-marker-line { padding:0; margin:0; line-height:0%; font-size:1px; overflow:hidden; height:1px; width:100px; position:absolute; top:-30px; z-index:10000; background-repeat:no-repeat; display:none; background-color:#456c43;  cursor:pointer; border:1px solid #eeeeee; border-left:0; -moz-box-shadow: 0px 0px 2px #666; -webkit-box-shadow: 0px 0px 2px #666; box-shadow: 0px 0px 2px #666;  -moz-border-radius:1px; border-radius:1px; -webkit-border-radius:1px; }.jstree .jstree-real-checkbox { display:none; } .jstree-themeroller .ui-icon { overflow:visible; } .jstree-themeroller a { padding:0 2px; } .jstree-themeroller .jstree-no-icon { display:none; }.jstree .jstree-wholerow-real { position:relative; z-index:1; } .jstree .jstree-wholerow-real li { cursor:pointer; } .jstree .jstree-wholerow-real a { border-left-color:transparent !important; border-right-color:transparent !important; } .jstree .jstree-wholerow { position:relative; z-index:0; height:0; } .jstree .jstree-wholerow ul, .jstree .jstree-wholerow li { width:100%; } .jstree .jstree-wholerow, .jstree .jstree-wholerow ul, .jstree .jstree-wholerow li, .jstree .jstree-wholerow a { margin:0 !important; padding:0 !important; } .jstree .jstree-wholerow, .jstree .jstree-wholerow ul, .jstree .jstree-wholerow li { background:transparent !important; }.jstree .jstree-wholerow ins, .jstree .jstree-wholerow span, .jstree .jstree-wholerow input { display:none !important; }.jstree .jstree-wholerow a, .jstree .jstree-wholerow a:hover { text-indent:-9999px !important; width:100%; padding:0 !important; border-right-width:0px !important; border-left-width:0px !important; } .jstree .jstree-wholerow-span { position:absolute; left:0; margin:0px; padding:0; height:18px; border-width:0; padding:0; z-index:0; }</style><link href="iOS%20Inspector_files/style.css" media="all" type="text/css" rel="stylesheet"></head>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>iOS Appium Inspector</title>
+    <link rel="stylesheet" href="iOS%20Inspector_files/inspector.css" type="text/css">
+    <link rel="stylesheet" href="iOS%20Inspector_files/style.css" type="text/css">
+    <link rel="stylesheet" href="iOS%20Inspector_files/ide.css" type="text/css">
+    <link rel="stylesheet" href="iOS%20Inspector_files/jquery.css" type="text/css">
+    <link rel="stylesheet" href="iOS%20Inspector_files/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="iOS%20Inspector_files/prettify.css" type="text/css">
+    <script type="text/javascript" src="iOS%20Inspector_files/jquery-1.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/jquery-ui-1.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/inspector1.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/jquery_002.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/jquery_003.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/prettify.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/Logger.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/inspector.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/ide.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/uiactions.js"></script>
+    <script type="text/javascript" src="iOS%20Inspector_files/jquery.js"></script>
+    <script>
+        jQuery(window).load(function () {
+            console.log('before calling resize()');
+            resize();
+        });
+    </script>
+    <style id="vakata-stylesheet" type="text/css">#vakata-dragged { display:block; margin:0 0 0 0; padding:4px 4px 4px 24px; position:absolute; top:-2000px; line-height:16px; z-index:10000; } #vakata-contextmenu { display:block; visibility:hidden; left:0; top:-200px; position:absolute; margin:0; padding:0; min-width:180px; background:#ebebeb; border:1px solid silver; z-index:10000; *width:180px; } #vakata-contextmenu ul { min-width:180px; *width:180px; } #vakata-contextmenu ul, #vakata-contextmenu li { margin:0; padding:0; list-style-type:none; display:block; } #vakata-contextmenu li { line-height:20px; min-height:20px; position:relative; padding:0px; } #vakata-contextmenu li a { padding:1px 6px; line-height:17px; display:block; text-decoration:none; margin:1px 1px 0 1px; } #vakata-contextmenu li ins { float:left; width:16px; height:16px; text-decoration:none; margin-right:2px; } #vakata-contextmenu li a:hover, #vakata-contextmenu li.vakata-hover > a { background:gray; color:white; } #vakata-contextmenu li ul { display:none; position:absolute; top:-2px; left:100%; background:#ebebeb; border:1px solid gray; } #vakata-contextmenu .right { right:100%; left:auto; } #vakata-contextmenu .bottom { bottom:-1px; top:auto; } #vakata-contextmenu li.vakata-separator { min-height:0; height:1px; line-height:1px; font-size:1px; overflow:hidden; margin:0 2px; background:silver; /* border-top:1px solid #fefefe; */ padding:0; } </style><style id="jstree-stylesheet" type="text/css">.jstree ul, .jstree li { display:block; margin:0 0 0 0; padding:0 0 0 0; list-style-type:none; } .jstree li { display:block; min-height:18px; line-height:18px; white-space:nowrap; margin-left:18px; min-width:18px; } .jstree-rtl li { margin-left:0; margin-right:18px; } .jstree > ul > li { margin-left:0px; } .jstree-rtl > ul > li { margin-right:0px; } .jstree ins { display:inline-block; text-decoration:none; width:18px; height:18px; margin:0 0 0 0; padding:0; } .jstree a { display:inline-block; line-height:16px; height:16px; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } .jstree a:focus { outline: none; } .jstree a > ins { height:16px; width:16px; } .jstree a > .jstree-icon { margin-right:3px; } .jstree-rtl a > .jstree-icon { margin-left:3px; margin-right:0; } li.jstree-open > ul { display:block; } li.jstree-closed > ul { display:none; } #vakata-dragged ins { display:block; text-decoration:none; width:16px; height:16px; margin:0 0 0 0; padding:0; position:absolute; top:4px; left:4px;  -moz-border-radius:4px; border-radius:4px; -webkit-border-radius:4px; } #vakata-dragged .jstree-ok { background:green; } #vakata-dragged .jstree-invalid { background:red; } #jstree-marker { padding:0; margin:0; font-size:12px; overflow:hidden; height:12px; width:8px; position:absolute; top:-30px; z-index:10001; background-repeat:no-repeat; display:none; background-color:transparent; text-shadow:1px 1px 1px white; color:black; line-height:10px; } #jstree-marker-line { padding:0; margin:0; line-height:0%; font-size:1px; overflow:hidden; height:1px; width:100px; position:absolute; top:-30px; z-index:10000; background-repeat:no-repeat; display:none; background-color:#456c43;  cursor:pointer; border:1px solid #eeeeee; border-left:0; -moz-box-shadow: 0px 0px 2px #666; -webkit-box-shadow: 0px 0px 2px #666; box-shadow: 0px 0px 2px #666;  -moz-border-radius:1px; border-radius:1px; -webkit-border-radius:1px; }.jstree .jstree-real-checkbox { display:none; } .jstree-themeroller .ui-icon { overflow:visible; } .jstree-themeroller a { padding:0 2px; } .jstree-themeroller .jstree-no-icon { display:none; }.jstree .jstree-wholerow-real { position:relative; z-index:1; } .jstree .jstree-wholerow-real li { cursor:pointer; } .jstree .jstree-wholerow-real a { border-left-color:transparent !important; border-right-color:transparent !important; } .jstree .jstree-wholerow { position:relative; z-index:0; height:0; } .jstree .jstree-wholerow ul, .jstree .jstree-wholerow li { width:100%; } .jstree .jstree-wholerow, .jstree .jstree-wholerow ul, .jstree .jstree-wholerow li, .jstree .jstree-wholerow a { margin:0 !important; padding:0 !important; } .jstree .jstree-wholerow, .jstree .jstree-wholerow ul, .jstree .jstree-wholerow li { background:transparent !important; }.jstree .jstree-wholerow ins, .jstree .jstree-wholerow span, .jstree .jstree-wholerow input { display:none !important; }.jstree .jstree-wholerow a, .jstree .jstree-wholerow a:hover { text-indent:-9999px !important; width:100%; padding:0 !important; border-right-width:0px !important; border-left-width:0px !important; } .jstree .jstree-wholerow-span { position:absolute; left:0; margin:0px; padding:0; height:18px; border-width:0; padding:0; z-index:0; }</style><link href="iOS%20Inspector_files/style.css" media="all" type="text/css" rel="stylesheet">
+</head>
 <body>
-<div id="header">
-<div id="logo"> Inspector shortcuts: <em>CTRL</em> locks tree element selection, <em>ESC</em> opens XPath helper</div>
-</div>
-<div class="ui-layout-container" id="content" style="height: 1029px; overflow: hidden;">
-<div style="position: absolute; margin: 0px; left: 0px; right: 0px; top: 0px; bottom: 206px; height: 801px; width: 1499px; z-index: 0; display: block; visibility: visible; overflow: hidden;" class="ui-layout-center ui-layout-pane ui-layout-pane-center ui-layout-container ui-layout-pane-hover ui-layout-pane-center-hover ui-layout-pane-open-hover ui-layout-pane-center-open-hover">
-<div style="position: absolute; margin: 0px; left: 10px; right: auto; top: 10px; bottom: 10px; height: 779px; z-index: 0; width: 428px; display: block; visibility: visible;" class="ui-layout-west ui-layout-pane ui-layout-pane-west" id="device">
-<label id="scaleFactorLabel" for="scaleFactor" style="display: none">Retina Scale Factor: </label>
-<select id="scaleFactor" name="scaleFactor" style="display: none"></select>
-<div id="simulator">
-<div style="left: 0px; top: 0px; transform: scale(1);" id="rotationCenter">
-<div style="top: 118px; left: 24px; height: 480px; width: 320px;" id="mouseOver"></div>
-<div id="frame">
-<div style="top: 118px; left: 24px;" id="screen">
-<img id="screenshot" src="about:blank" width="320px" style="display: none">
-<img id="loading" src="iOS%20Inspector_files/loading.gif" width="320px" style="display: none">
-</div>
-</div>
-</div>
-</div>
-</div>
-<div style="position: absolute; margin: 0px; left: 466px; right: 316px; top: 10px; bottom: 10px; height: 779px; width: 715px; z-index: 0; display: block; visibility: visible;" class="ui-layout-center ui-layout-pane ui-layout-pane-center ui-layout-pane-hover ui-layout-pane-center-hover ui-layout-pane-open-hover ui-layout-pane-center-open-hover">
-    <div class="jstree jstree-0 jstree-focused jstree-apple" id="tree"></div>
-</div>
-<div style="position: absolute; margin: 0px; left: auto; right: 10px; top: 10px; bottom: 10px; height: 779px; z-index: 0; width: 278px; display: block; visibility: visible;" class="ui-layout-east ui-layout-pane ui-layout-pane-east">
-    <div id="details"></div>
-</div>
-</div>
-<div style="position: absolute; margin: 0px; top: auto; bottom: 0px; left: 0px; right: 0px; width: auto; z-index: 0; overflow: hidden; height: 191px; display: block; visibility: visible;" class="ui-layout-south ui-tabs ui-widget ui-widget-content ui-corner-all ui-layout-pane ui-layout-pane-south invisible">
-<ul role="tablist" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-<li aria-selected="true" aria-labelledby="ui-id-1" aria-controls="java" tabindex="0" role="tab" class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a id="ui-id-1" tabindex="-1" role="presentation" class="ui-tabs-anchor" href="#java">Java</a></li>
-<li aria-selected="false" aria-labelledby="ui-id-2" aria-controls="htmlSource" tabindex="-1" role="tab" class="ui-state-default ui-corner-top"><a id="ui-id-2" tabindex="-1" role="presentation" class="ui-tabs-anchor" href="#htmlSource">Html Source</a></li>
-</ul>
-<div style="position: relative; height: 137px; visibility: visible;" class="ui-layout-content ui-widget-content">
-<pre style="" aria-hidden="false" aria-expanded="true" role="tabpanel" aria-labelledby="ui-id-1" id="java" class="prettyprint ui-tabs-panel ui-widget-content ui-corner-bottom prettyprinted" width="100%"></pre>
-<pre aria-hidden="true" aria-expanded="false" style="display: none;" role="tabpanel" aria-labelledby="ui-id-2" id="htmlSource" class="prettyprint ui-tabs-panel ui-widget-content ui-corner-bottom prettyprinted" width="100%">
-</pre>
-</div>
-</div>
-</div>
+    <div id="header">
+        <div id="logo"> Inspector shortcuts: <em>CTRL</em> locks tree element selection, <em>ESC</em> opens XPath helper</div>
+    </div>
+    <div class="ui-layout-container" id="content" style="height: 1029px; overflow: hidden;">
+        <div style="position: absolute; margin: 0px; left: 0px; right: 0px; top: 0px; bottom: 206px; height: 801px; width: 1499px; z-index: 0; display: block; visibility: visible; overflow: hidden;" class="ui-layout-center ui-layout-pane ui-layout-pane-center ui-layout-container ui-layout-pane-hover ui-layout-pane-center-hover ui-layout-pane-open-hover ui-layout-pane-center-open-hover">
+            <div style="position: absolute; margin: 0px; left: 10px; right: auto; top: 10px; bottom: 10px; height: 779px; z-index: 0; width: 428px; display: block; visibility: visible;" class="ui-layout-west ui-layout-pane ui-layout-pane-west" id="device">
+                <label id="scaleFactorLabel" for="scaleFactor" style="display: none">Retina Scale Factor: </label>
+                <select id="scaleFactor" name="scaleFactor" style="display: none"></select>
+                <div id="simulator">
+                    <div style="left: 0px; top: 0px; transform: scale(1);" id="rotationCenter">
+                        <div style="top: 118px; left: 24px; height: 480px; width: 320px;" id="mouseOver"></div>
+                        <div id="frame">
+                            <div style="top: 118px; left: 24px;" id="screen">
+                                <img id="screenshot" src="about:blank" width="320px" style="display: none">
+                                <img id="loadingScreenshot" src="iOS%20Inspector_files/loading.gif" width="320px" style="display: none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; margin: 0px; left: 466px; right: 316px; top: 10px; bottom: 10px; height: 779px; width: 715px; z-index: 0; display: block; visibility: visible;" class="ui-layout-center ui-layout-pane ui-layout-pane-center ui-layout-pane-hover ui-layout-pane-center-hover ui-layout-pane-open-hover ui-layout-pane-center-open-hover">
+                <div class="jstree jstree-0 jstree-focused jstree-apple" id="tree" style="display: none"></div>
+                <img id="loadingTree" src="iOS%20Inspector_files/loading.gif" width="100%" style="display: none">
+            </div>
+            <div style="position: absolute; margin: 0px; left: auto; right: 10px; top: 10px; bottom: 10px; height: 779px; z-index: 0; width: 278px; display: block; visibility: visible;" class="ui-layout-east ui-layout-pane ui-layout-pane-east">
+                <div id="details"></div>
+            </div>
+        </div>
+        <div style="position: absolute; margin: 0px; top: auto; bottom: 0px; left: 0px; right: 0px; width: auto; z-index: 0; overflow: hidden; height: 191px; display: block; visibility: visible;" class="ui-layout-south ui-tabs ui-widget ui-widget-content ui-corner-all ui-layout-pane ui-layout-pane-south invisible">
+            <ul role="tablist" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                <li aria-selected="true" aria-labelledby="ui-id-1" aria-controls="java" tabindex="0" role="tab" class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a id="ui-id-1" tabindex="-1" role="presentation" class="ui-tabs-anchor" href="#java">Java</a></li>
+                <li aria-selected="false" aria-labelledby="ui-id-2" aria-controls="htmlSource" tabindex="-1" role="tab" class="ui-state-default ui-corner-top"><a id="ui-id-2" tabindex="-1" role="presentation" class="ui-tabs-anchor" href="#htmlSource">Html Source</a></li>
+            </ul>
+            <div style="position: relative; height: 137px; visibility: visible;" class="ui-layout-content ui-widget-content">
+                <pre aria-hidden="false" aria-expanded="true" role="tabpanel" aria-labelledby="ui-id-1" id="java" class="prettyprint ui-tabs-panel ui-widget-content ui-corner-bottom prettyprinted" width="100%"></pre>
+                <pre aria-hidden="true" aria-expanded="false" style="display: none;" role="tabpanel" aria-labelledby="ui-id-2" id="htmlSource" class="prettyprint ui-tabs-panel ui-widget-content ui-corner-bottom prettyprinted" width="100%"></pre>
+            </div>
+        </div>
+    </div>
 
-<div style="display: none;" id="xpathHelper" title="Xpather helper">
-<input id="xpathInput" type="text">
-<div id="xpathLog"></div>
-</div>
-<div id="footer">
-<div>© 2012 - 2014 <a href="http://ebayopensource.github.io/" target="_blank"><img src="iOS%20Inspector_files/ebay-logo.png"> software foundation</a> |
-Maintained by <a href="https://github.com/selendroid/selendroid/blob/master/AUTHORS" target="_blank">Selendroid Authors</a> |
-<a href="http://groups.google.com/group/selendroid" target="_blank">Mailing List</a> |
-<a href="https://github.com/selendroid/selendroid/issues?direction=desc&amp;sort=updated&amp;state=open" target="_blank">Issue Tracker</a> |
-iOS Appium compatibility changes by Nick at <a href="https://wire.com" target="_blank"><img src="iOS%20Inspector_files/wire-logo.png" height="25" >Wire Swiss Inc.</a>
-</div>
-</div>
-<script>configure('iphone','Regular','PORTRAIT');</script>
+    <div style="display: none;" id="xpathHelper" title="Xpather helper">
+        <input id="xpathInput" type="text">
+        <div id="xpathLog"></div>
+    </div>
+    <div id="footer">
+        <div>ï¿½ 2012 - 2014 <a href="http://ebayopensource.github.io/" target="_blank"><img src="iOS%20Inspector_files/ebay-logo.png"> software foundation</a> |
+        Maintained by <a href="https://github.com/selendroid/selendroid/blob/master/AUTHORS" target="_blank">Selendroid Authors</a> |
+        <a href="http://groups.google.com/group/selendroid" target="_blank">Mailing List</a> |
+        <a href="https://github.com/selendroid/selendroid/issues?direction=desc&amp;sort=updated&amp;state=open" target="_blank">Issue Tracker</a> |
+        iOS Appium compatibility changes by Nick at <a href="https://wire.com" target="_blank"><img src="iOS%20Inspector_files/wire-logo.png" height="25" >Wire Swiss Inc.</a>
+        </div>
+    </div>
+    <script>configure('iphone','Regular','PORTRAIT');</script>
 
 
-<div style="display: none;" id="jstree-marker">»</div><div style="display: none;" id="jstree-marker-line"></div><div id="vakata-contextmenu"></div></body></html>
+    <div style="display: none;" id="jstree-marker">ï¿½</div><div style="display: none;" id="jstree-marker-line"></div><div id="vakata-contextmenu"></div>
+</body>
+</html>
