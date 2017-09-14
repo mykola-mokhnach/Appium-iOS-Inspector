@@ -23,8 +23,8 @@ Inspector.logLevel = 4; // 0=none, 1=error, 2=error +warning, 3=
 const APPIUM_ROOT = "http://localhost:4723/wd/hub";
 const DEFAULT_SCALE_FACTOR = 2;
 const MAX_SCALE_FACTOR = 5;
-const SCREENSHOT_GET_TIMEOUT_MS = 20000;
-const SRC_XML_GET_TIMEOUT_MS = 60000;
+const SCREENSHOT_GET_TIMEOUT_MS = 20 * 1000;
+const SRC_XML_GET_TIMEOUT_MS = 3 * 60 * 1000;
 
 
 function Inspector(selector) {
@@ -189,9 +189,9 @@ Inspector.prototype.initAutXml = function () {
                 timeout: SRC_XML_GET_TIMEOUT_MS,
            })
         .done(function (data) {
-                me.log.info("Successfully loaded the source tree in "
-                            + parseInt(performance.now() - msStarted, 10)
-                            + " ms");
+                me.log.info("Successfully retrieved the source tree in "
+                    + parseInt((performance.now() - msStarted) / 1000, 10)
+                    + " seconds");
                 me.log.info(data);
 
                 me.initScreenshot();
