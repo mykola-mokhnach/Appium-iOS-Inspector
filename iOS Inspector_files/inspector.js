@@ -20,7 +20,7 @@
 
 Inspector.logLevel = 4; // 0=none, 1=error, 2=error +warning, 3=
 // error,warning,info 4 = all
-const APPIUM_ROOT = "http://localhost:4723/wd/hub";
+const APPIUM_ROOT = "http://0.0.0.0:4723/wd/hub";
 const DEFAULT_SCALE_FACTOR = 2;
 const MAX_SCALE_FACTOR = 5;
 const SCREENSHOT_GET_TIMEOUT_MS = 20 * 1000;
