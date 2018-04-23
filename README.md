@@ -17,7 +17,9 @@ Note: The Accessibility Id property can be presented as @name attribute in XPath
 Customizations
 -------------
 
-Change the default Appium server address if needed inside inspector.js file, _APPIUM_ROOT_ constant.
+Change the default Appium server address using query parameter `port` e.g. 
+        ```<path to Appium-iOS-Inspector>/iOS Inspector.html?port=1234```
+    
 
 License
 -----------
