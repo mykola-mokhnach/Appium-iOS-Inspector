@@ -16,20 +16,21 @@
  *
  */
 
-const getParameterByName = (name, url) => {
-    if (!url) url = window.location.href;
+function getParameterByName(name) {
+    var url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+    var matches = regex.exec(url);
+    if (!matches || !matches[2]) {
+        return null;
+    }
+    return decodeURIComponent(matches[2].replace(/\+/g, " "));
 }
 
 Inspector.logLevel = 4; // 0=none, 1=error, 2=error +warning, 3=
 // error,warning,info 4 = all
 const PORT = getParameterByName("port") || '4723';
-const APPIUM_ROOT = `http://localhost:${PORT}/wd/hub`;
+const APPIUM_ROOT = "http://localhost:" + PORT + "/wd/hub";
 const DEFAULT_SCALE_FACTOR = 2;
 const MAX_SCALE_FACTOR = 5;
 const SCREENSHOT_GET_TIMEOUT_MS = 20 * 1000;
