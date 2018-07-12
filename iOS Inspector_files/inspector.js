@@ -30,7 +30,8 @@ function getParameterByName(name) {
 Inspector.logLevel = 4; // 0=none, 1=error, 2=error +warning, 3=
 // error,warning,info 4 = all
 const PORT = getParameterByName("port") || '4723';
-const APPIUM_ROOT = "http://localhost:" + PORT + "/wd/hub";
+const HOST = getParameterByName("host") || 'localhost';
+const APPIUM_ROOT = "http://" + HOST + ":" + PORT + "/wd/hub";
 const DEFAULT_SCALE_FACTOR = 2;
 const MAX_SCALE_FACTOR = 5;
 const SCREENSHOT_GET_TIMEOUT_MS = 20 * 1000;

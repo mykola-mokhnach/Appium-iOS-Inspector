@@ -18,7 +18,7 @@ Customizations
 -------------
 
 Change the default Appium server address using query parameter `port` e.g. 
-        ```<path to Appium-iOS-Inspector>/iOS Inspector.html?port=1234```
+        ```<path to Appium-iOS-Inspector>/iOS Inspector.html?host=127.0.0.1&port=1234```
     
 
 License
