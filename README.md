@@ -23,7 +23,7 @@ Change the default Appium server address using query parameter `port` e.g.
 Known Issues
 ------------
 
-If the inspector fails load the page source even though Appium session is running on localhost and you observe a CORS error in Chrome console then it might happen because of a known [bug](https://bugs.chromium.org/p/chromium/issues/detail?id=67743). Visit the issue link to get more information on possible workarounds.
+If the inspector fails to load the page source even though Appium session is running on localhost and you observe a CORS error in Chrome console then it might happen because of a known [bug](https://bugs.chromium.org/p/chromium/issues/detail?id=67743). Visit the issue link to get more information on possible workarounds.
 
 License
 -------
