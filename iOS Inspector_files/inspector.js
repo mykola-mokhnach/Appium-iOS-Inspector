@@ -174,12 +174,14 @@ Inspector.prototype.initSessionId = function () {
         .done(function (data) {
                   me.log.info("success");
                   me.log.info(data);
-                  if (data.value[data.value.length - 1] === undefined) {
-                      me.log.info("Session Id is undefined");
-                      return;
+                  if (Array.isArray(data.value) && data.value.length) {
+                    if (data.value[data.value.length - 1] === undefined) {
+                        me.log.info("Session Id is undefined");
+                        return;
+                    }
+                    me.sessionId = data.value[data.value.length - 1].id;
+                    me.log.info("Session Id: " + me.sessionId);   
                   }
-                  me.sessionId = data.value[data.value.length - 1].id;
-                  me.log.info("Session Id: " + me.sessionId);
               })
         .fail(function () {
                   me.log.info("error");
