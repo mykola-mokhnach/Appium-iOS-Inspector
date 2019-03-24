@@ -172,14 +172,23 @@ Inspector.prototype.initSessionId = function () {
                type: "GET",
            })
         .done(function (data) {
-                  me.log.info("success");
-                  me.log.info(data);
-                  if (data.value[0] === undefined) {
+                  me.log.info("success: " + JSON.stringify(data));
+                  if (Array.isArray(data.value) && data.value.length) {
+                      var sessionIndex = parseInt(getParameterByName('sessionIndex'), 10);
+                      if (!isNaN(sessionIndex) &&
+                        (sessionIndex >= 0 && sessionIndex < data.value.length
+                        || sessionIndex < 0 && Math.abs(sessionIndex) <= data.value.length)) {
+                          me.log.info("Getting the session with index " + sessionIndex);
+                          me.sessionId = sessionIndex < 0
+                            ? data.value[data.value.length + sessionIndex].id
+                            : data.value[sessionIndex].id;
+                      } else {
+                          me.sessionId = data.value[0].id;
+                      }
+                      me.log.info("Session Id: " + me.sessionId);
+                  } else {
                       me.log.info("Session Id is undefined");
-                      return;
                   }
-                  me.sessionId = data.value[0].id;
-                  me.log.info("Session Id: " + me.sessionId);
               })
         .fail(function () {
                   me.log.info("error");
