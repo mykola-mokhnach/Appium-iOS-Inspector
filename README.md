@@ -26,7 +26,7 @@ Change the default session index (zero) by proving the `sessionIndex` query para
 Known Issues
 ------------
 
-If the inspector fails to load the page source even though Appium session is running on localhost and you observe a CORS error in Chrome console then it might happen because of a known [bug](https://bugs.chromium.org/p/chromium/issues/detail?id=67743). Visit the issue link to get more information on possible workarounds.
+If the inspector fails to load the page source even though Appium session is running on localhost and you observe a CORS error in the browser console then try to run the appium with `--allow-cors` argument (supported since version 1.10.0). Also in Chrome it might be happening because of the known [bug](https://bugs.chromium.org/p/chromium/issues/detail?id=67743). Visit the issue link to get more information on possible workarounds.
 
 License
 -------
